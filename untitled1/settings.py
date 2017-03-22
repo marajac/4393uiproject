@@ -145,9 +145,9 @@ STATIC_URL = '/static/'
 
 if DEBUG:
     MEDIA_URL = '/media/'
-    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "untitled1", "static", "static-only")
-    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "untitled1", "static", "media")
-    STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR), "untitled1", "static", "static"),)
+    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "4393uiproject", "static", "static-only")
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "4393uiproject", "static", "media")
+    STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR), "4393uiproject", "static", "static"),)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
