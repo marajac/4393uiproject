@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<h1>{{ item.name }}</h1>
+<h2>{{ item.price_in_dollars }}</h2>
+{% endblock %}
+</body>
+</html>
