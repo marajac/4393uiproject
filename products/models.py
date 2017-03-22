@@ -6,7 +6,7 @@ class Product(models.Model):
     name = models.CharField(max_length=300)
     slug = models.SlugField(max_length=150, unique=True)
     description = models.TextField(default='Item description here')
-#   photo = models.ImageField(upload_to='product_photo', blank=True)
+    photo = models.ImageField(upload_to='product_photo', blank=True)
     manufacturer = models.CharField(max_length=300, blank=True)
     price_in_dollars = models.DecimalField(max_digits=6, decimal_places=2)
 

@@ -8,7 +8,15 @@
 </head>
 <body>
 {% block content %}
-<h1>Products page</h1>
+<h1>Product catalog</h1>
+    <p>
+        {% for item in list %}
+            <div class="col-md-4">
+                {{ item.name }}
+                {{ item.price_in_dollars }}
+            </div>
+        {% endfor %}
+    </p>
 {% endblock %}
 </body>
 </html>
