@@ -10,6 +10,9 @@ class Product(models.Model):
     manufacturer = models.CharField(max_length=300, blank=True)
     price_in_dollars = models.DecimalField(max_digits=6, decimal_places=2)
 
+    def get_absolute_url(self):
+        return "/products/%s/" % self.slug
+
     def __str__(self):
         return self.name
 
