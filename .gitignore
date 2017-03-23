@@ -1,3 +1,8 @@
-# Ignore variations between contributer setups
+# Ignore variations between contributor setups
 .idea/*
 *.iml
+checkout/__pycache__/
+contact/__pycache__/
+products/__pycache__/
+profiles/__pycache__/
+untitled1/__pycache__/
