@@ -10,6 +10,7 @@
 <body>
 {% block content %}
 <h1>Product catalog</h1>
+<br><br><br><br><br>
 {% for item in list %}
     <div class="col-md-4">
         <h3><a href='{{ item.get_absolute_url }}'>
@@ -21,7 +22,7 @@
         </a>
             <a href='{{ item.get_absolute_url }}'> <h3>{{ item.name }}</h3></a>
         </h3>
-        <h4>{{ item.price_in_dollars }}</h4>
+        <h4>${{ item.price_in_dollars }}</h4>
     </div>
 {% endfor %}
 {% endblock %}

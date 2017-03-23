@@ -9,13 +9,25 @@
 </head>
 <body>
 {% block content %}
-<h1>{{ item.name }}</h1>
-<h2>{{ item.price_in_dollars }}</h2>
-    {% if item.photo %}
-        <img class='img-responsive' src="{{ MEDIA_URL }}{{ item.photo }}" />
-    {% else %}
-        <img class='img-responsive' src="{% static 'img/unavailable.png' %}" />
-    {% endif %}
+<div class="row">
+    <a href="/products/">Return to product catalog</a>
+</div>
+<br><br><br><br><br>
+<div class="row">
+    <div class="col-md-4">
+        {% if item.photo %}
+            <img class='img-responsive' src="{{ MEDIA_URL }}{{ item.photo }}" />
+        {% else %}
+            <img class='img-responsive' src="{% static 'img/unavailable.png' %}" />
+        {% endif %}
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+        <h2>{{ item.name }}</h2>
+        <h4>Price: ${{ item.price_in_dollars }}</h4>
+        <br><br><br>
+        <h4>Item description: {{ item.description }}</h4>
+    </div>
+</div>
 {% endblock %}
 </body>
 </html>
