@@ -1,14 +1,17 @@
-from django.db import models
 import datetime
+
+from django.db import models
+from django.utils import timezone
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=300)
-    slug = models.SlugField(max_length=150, unique=True)
+    category = models.ForeignKey('CatalogCategory', related_name='products', null=True)
+    name = models.CharField(max_length=300, null=True)
+    slug = models.SlugField(max_length=150, unique=True, null=True)
     description = models.TextField(default='Item description here')
     photo = models.ImageField(upload_to='product_photo', blank=True)
     manufacturer = models.CharField(max_length=300, blank=True)
-    price_in_dollars = models.DecimalField(max_digits=6, decimal_places=2)
+    price_in_dollars = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
 
     def get_absolute_url(self):
         return "/products/%s/" % self.slug
@@ -17,13 +20,15 @@ class Product(models.Model):
         return self.name
 
 
-
-'''class Catalog(models.Model):
+class Catalog(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=150)
     publisher = models.CharField(max_length=300)
     description = models.TextField()
-    pub_date = models.DateTimeField(default=datetime)
+    pub_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
 
 
 class CatalogCategory(models.Model):
@@ -35,42 +40,33 @@ class CatalogCategory(models.Model):
 
     def __str__(self):
         if self.parent:
-            return u'%s: %s - %s' % (self.catalog.name,
-                                     self.parent.name,
-                                     self.name)
+            return u'%s: %s - %s' % (self.catalog.name, self.parent.name, self.name)
         return u'%s: %s' % (self.catalog.name, self.name)
 
 
-class ProductDetail(models.Model):
-
-    The ``ProductDetail`` model represents information unique to a
+'''class ProductDetail(models.Model):
+    """The ``ProductDetail`` model represents information unique to a
     specific product. This is a generic design that can be used
     to extend the information contained in the ``Product`` model with
-    specific, extra details.
-
+    specific, extra details."""
     product = models.ForeignKey('Product', related_name='details')
     attribute = models.ForeignKey('ProductAttribute')
     value = models.CharField(max_length=500)
     description = models.TextField(blank=True)
 
     def __str__(self):
-        return u'%s: %s - %s' % (self.product,
-                                 self.attribute,
-                                 self.value)
+        return u'%s: %s - %s' % (self.product, self.attribute, self.value)
 
 
 class ProductAttribute(models.Model):
-
-    The "ProductAttribute" model represents a class of feature found
+    """The "ProductAttribute" model represents a class of feature found
     across a set of products. It does not store any data values
     related to the attribute, but only describes what kind of a
     product feature we are trying to capture. Possible attributes
     include things such as materials, colors, sizes, and many, many
-    more.
-
+    more."""
     name = models.CharField(max_length=300)
     description = models.TextField(blank=True)
 
     def __str__(self):
-        return u'%s' % self.name
-'''
+        return u'%s' % self.name'''
