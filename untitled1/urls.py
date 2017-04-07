@@ -21,7 +21,6 @@ from django.contrib import admin
 from profiles import views as profiles_views
 from contact import views as contact_views
 from checkout import views as checkout_views
-from products import views as products_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

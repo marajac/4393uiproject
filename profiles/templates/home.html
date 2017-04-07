@@ -19,49 +19,81 @@
 {% endblock %}
 
 {% block content %}
-{% comment %}<div class="row">
+<div class="row">
+    <br>
     <h2>Featured items</h2>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div>
-        <div class="col-md-4">
-            <a href="#"></a><img src="{% static 'img/utsa.png' %}" class="img-responsive"/></a>
-        </div>
-        <div class="col-md-4">
-          {% if request.user.is_authenticated %}
-            <h3>Hello {{ request.user }}!</h3>
+    <br><br>
+    <div class="col-sm-4">
+              <h3><a href='{{ list.0.get_absolute_url }}'>
+            {% if list.0.photo %}
+                <img src="{{ MEDIA_URL }}{{ list.0.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
             {% else %}
-          <form class="login" method="POST" action="{% url 'account_login' %}">
-          {% csrf_token %}
-            <div id="div_id_login" class="form-group"> <label for="id_login" class="control-label  requiredField">
-                Login<span class="asteriskField">*</span> </label> <div class="controls "> <input autofocus="autofocus" class="textinput textInput form-control" id="id_login" name="login" placeholder="Username or e-mail" required="" type="text"> </div> </div> <div id="div_id_password" class="form-group"> <label for="id_password" class="control-label  requiredField">
-                Password<span class="asteriskField">*</span> </label> <div class="controls "> <input class="textinput textInput form-control" id="id_password" name="password" placeholder="Password" required="" type="password"> </div> </div> <div class="form-group"> <div id="div_id_remember" class="checkbox"> <label for="id_remember" class=""> <input class="checkboxinput" id="id_remember" name="remember" type="checkbox">
-                    Remember Me
-                </label>
-          </div>
-         </div>
-         <a class="btn btn-link button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
-         <a class="btn btn-link button secondaryAction" href="{% url 'account_signup' %}">Sign up</a>
-        <button class="btn btn-default primaryAction" type="submit">Sign In</button>
-        </form>
-        {% endif %}
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div>
-      </div>{% endcomment %}
+                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+            {% endif %}
+        </a>
+            <a href='{{ list.0.get_absolute_url }}'> <h3>{{ list.0.name }}</h3></a>
+        </h3>
+        <h4>${{ list.0.price_in_dollars }}</h4>
+    </div>
+    <div class="col-sm-4">
+              <h3><a href='{{ list.1.get_absolute_url }}'>
+            {% if list.1.photo %}
+                <img src="{{ MEDIA_URL }}{{ list.1.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
+            {% else %}
+                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+            {% endif %}
+        </a>
+            <a href='{{ list.1.get_absolute_url }}'> <h3>{{ list.1.name }}</h3></a>
+        </h3>
+        <h4>${{ list.1.price_in_dollars }}</h4>
+    </div>
+    <div class="col-sm-4">
+              <h3><a href='{{ list.0.get_absolute_url }}'>
+            {% if list.0.photo %}
+                <img src="{{ MEDIA_URL }}{{ list.0.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
+            {% else %}
+                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+            {% endif %}
+        </a>
+            <a href='{{ list.0.get_absolute_url }}'> <h3>{{ list.0.name }}</h3></a>
+        </h3>
+        <h4>${{ list.0.price_in_dollars }}</h4>
+    </div>
+    <div class="col-sm-4">
+              <h3><a href='{{ list.1.get_absolute_url }}'>
+            {% if list.1.photo %}
+                <img src="{{ MEDIA_URL }}{{ list.1.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
+            {% else %}
+                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+            {% endif %}
+        </a>
+            <a href='{{ list.1.get_absolute_url }}'> <h3>{{ list.1.name }}</h3></a>
+        </h3>
+        <h4>${{ list.1.price_in_dollars }}</h4>
+    </div>
+    <div class="col-sm-4">
+              <h3><a href='{{ list.0.get_absolute_url }}'>
+            {% if list.0.photo %}
+                <img src="{{ MEDIA_URL }}{{ list.0.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
+            {% else %}
+                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+            {% endif %}
+        </a>
+            <a href='{{ list.0.get_absolute_url }}'> <h3>{{ list.0.name }}</h3></a>
+        </h3>
+        <h4>${{ list.0.price_in_dollars }}</h4>
+    </div>
+    <div class="col-sm-4">
+              <h3><a href='{{ list.1.get_absolute_url }}'>
+            {% if list.1.photo %}
+                <img src="{{ MEDIA_URL }}{{ list.1.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
+            {% else %}
+                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+            {% endif %}
+        </a>
+            <a href='{{ list.1.get_absolute_url }}'> <h3>{{ list.1.name }}</h3></a>
+        </h3>
+        <h4>${{ list.1.price_in_dollars }}</h4>
+    </div>
+</div>
 {%  endblock %}

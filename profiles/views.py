@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from products import models
 
 
 def home(request):
-    context = {}
+    product_list = models.Product.objects.all()
+    context = {'list': product_list}
     template = 'home.html'
     return render(request, template, context)
 
