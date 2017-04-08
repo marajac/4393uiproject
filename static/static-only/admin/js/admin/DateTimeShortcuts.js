@@ -315,7 +315,7 @@
                 DateTimeShortcuts.drawNext(num);
             });
 
-            // main box
+            // untitled1 box
             var cal_main = quickElement('div', cal_box, '', 'id', DateTimeShortcuts.calendarDivName2 + num);
             cal_main.className = 'calendar';
             DateTimeShortcuts.calendars[num] = new Calendar(DateTimeShortcuts.calendarDivName2 + num, DateTimeShortcuts.handleCalendarCallback(num));
