@@ -5,5 +5,5 @@ from django.shortcuts import render
 @login_required
 def checkout(request):
     context = {}
-    template = 'checkout.html'
+    template = 'cart.html'
     return render(request, template, context)

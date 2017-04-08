@@ -21,6 +21,7 @@ from django.contrib import admin
 from profiles import views as profiles_views
 from contact import views as contact_views
 from checkout import views as checkout_views
+from cart import views as cart_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     url(r'^about/$', profiles_views.about, name='about'),
     url(r'^profile/$', profiles_views.user_profile, name='profile'),
     url(r'^checkout/$', checkout_views.checkout, name='checkout'),
+    url(r'^cart/$', cart_views.get_cart, name='cart'),
     url(r'^contact/$', contact_views.contact, name='contact'),
     url(r'^products/', include('products.urls')),
     url(r'^accounts/', include('allauth.urls')),
