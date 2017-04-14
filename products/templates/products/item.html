@@ -9,6 +9,7 @@
 </head>
 <body>
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/item.css' %}"/>
 <div class="row">
     <a href="/products/">Return to product catalog</a>
 </div>
@@ -21,11 +22,12 @@
             <img class='img-responsive' src="{% static 'img/unavailable.png' %}" />
         {% endif %}
     </div>
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-4 col-md-offset-1">
         <h2>{{ item.name }}</h2>
-        <h4>Price: ${{ item.price_in_dollars }}</h4>
-        <br><br><br>
+        <h3>Price</h3>
+        <h4>${{ item.price_in_dollars }}</h4>
         <h4>Item description: {{ item.description }}</h4>
+        <button type="submit" class="btn btn-default">Add to Cart</button>
     </div>
 </div>
 {% endblock %}

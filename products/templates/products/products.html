@@ -12,17 +12,20 @@
 <h1>Product catalog</h1>
 <br><br><br><br><br>
 {% for item in list %}
-    <div class="col-md-4">
-        <h3><a href='{{ item.get_absolute_url }}'>
-            {% if item.photo %}
-                <img src="{{ MEDIA_URL }}{{ item.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-            {% else %}
-                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-            {% endif %}
-        </a>
-            <a href='{{ item.get_absolute_url }}'> <h3>{{ item.name }}</h3></a>
-        </h3>
-        <h4>${{ item.price_in_dollars }}</h4>
+    <div class="col-md-4" id="item">
+    <link rel="stylesheet" href="{% static 'css/products.css' %}"/>
+        <ul class="product">
+            <h3><a href='{{ item.get_absolute_url }}'>
+                {% if item.photo %}
+                    <img src="{{ MEDIA_URL }}{{ item.photo }}" class="img-responsive" style="width:300px;height:200px;" id="item-photo"/>
+                {% else %}
+                    <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+                {% endif %}
+            </a>
+                <a href='{{ item.get_absolute_url }}'> <h3>{{ item.name }}</h3></a>
+            </h3>
+            <h4>${{ item.price_in_dollars }}</h4>
+        </ul>
     </div>
 {% endfor %}
 {% endblock %}
