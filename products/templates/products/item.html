@@ -23,10 +23,11 @@
         {% endif %}
     </div>
     <div class="col-md-4 col-md-offset-1">
-        <h2>{{ item.name }}</h2>
-        <h3>Price</h3>
-        <h4>${{ item.price_in_dollars }}</h4>
-        <h4>Item description: {{ item.description }}</h4>
+        <h1>{{ item.name }}</h1>
+        <h2>PRICE</h2>
+        <h3>${{ item.price_in_dollars }}</h3>
+        <!--<h4>Item description:</h4>-->
+        <h4 class="description">{{ item.description }}</h4>
         <button type="submit" class="btn btn-default">Add to Cart</button>
     </div>
 </div>

@@ -12,8 +12,9 @@ class Cart(models.Model):
         verbose_name_plural = _('carts')
         ordering = ('-creation_date',)
 
-    def __unicode__(self):
-        return unicode(self.creation_date)
+    def __str__(self):
+        return self.creation_date
+
 
 class ItemManager(models.Manager):
     def get(self, *args, **kwargs):
@@ -22,6 +23,7 @@ class ItemManager(models.Manager):
             kwargs['object_id'] = kwargs['product'].pk
             del(kwargs['product'])
         return super(ItemManager, self).get(*args, **kwargs)
+
 
 class Item(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=_('cart'))
@@ -38,7 +40,7 @@ class Item(models.Model):
         verbose_name_plural = _('items')
         ordering = ('cart',)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%d units of %s' % (self.quantity, self.product.__class__.__name__)
 
     def total_price(self):

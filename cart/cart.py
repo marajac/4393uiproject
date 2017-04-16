@@ -3,11 +3,14 @@ import cart.models as models
 
 CART_ID = 'CART-ID'
 
+
 class ItemAlreadyExists(Exception):
     pass
 
+
 class ItemDoesNotExist(Exception):
     pass
+
 
 class Cart:
     def __init__(self, request):
