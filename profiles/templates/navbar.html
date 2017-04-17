@@ -1,31 +1,31 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-    <div class="navbar-header">
-      <ul class="nav navbar-nav">
-        {% url 'home' as home %}
-        {% url 'about' as about %}
-        {% url 'contact' as contact %}
-        <li class="dropdown">
-          <a href="#" class="navbar-brand dropdown" data-toggle="dropdown"><p> ShopTime <span class="caret"></span></p></a>
-          <ul class="dropdown-menu" id="BrandDropdown" role="menu">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="/products/">Browse</a></li>
-            <li class="divider" id="DropdownDivider"></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'contact' %}">Contact us</a></li>
-            <li class="divider" id="DropdownDivider"></li>
-            {% if not request.user.is_authenticated %}
-                <li><a href="{% url 'account_login' %}">Login</a></li>
-                <!--<li><a href="{% url 'account_signup' %}">Signup</a></li>-->
-            {% else %}
-                <li><a href="{% url 'account_logout' %}">Logout</a></li>
-            {% endif %}
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                {% url 'home' as home %}
+                {% url 'about' as about %}
+                {% url 'contact' as contact %}
+                <li class="dropdown">
+                    <a href="#" class="navbar-brand dropdown" data-toggle="dropdown"><p> ShopTime <span class="caret"></span></p></a>
+                    <ul class="dropdown-menu" id="BrandDropdown" role="menu">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="/products/">Browse</a></li>
+                        <li class="divider" id="DropdownDivider"></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'contact' %}">Contact us</a></li>
+                        <li class="divider" id="DropdownDivider"></li>
+                        {% if not request.user.is_authenticated %}
+                            <li><a href="{% url 'account_login' %}">Login / Sign up</a></li>
+                            <!--<li><a href="{% url 'account_signup' %}">Signup</a></li>-->
+                        {% else %}
+                            <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    <!--<div id="navbar" class="navbar-collapse collapse">-->
       <ul class="nav navbar-nav">
          <form class="navbar-form navbar-left">
             <div class="form-group">
@@ -33,9 +33,9 @@
             </div>
             <button type="submit" class="btn btn-default">Search</button>
          </form>
-         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/cart/"><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
-         </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/cart/"><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
+      </ul>
       <!--{% url 'home' as home %}
       {% url 'about' as about %}
       {% url 'contact' as contact %}
@@ -59,5 +59,5 @@
         </li>-->
       </ul>
     </div><!--/.nav-collapse -->
-  </div>
+  <!--</div>-->
 </nav>
