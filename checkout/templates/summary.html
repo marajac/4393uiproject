@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary</title>
+</head>
+<body>
+
+{% block styles %}
+    <style>
+    .header{
+        text-align: center;
+    }
+    </style>
+{%  endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Order Summary</h1>
+    </div>
+{% endblock %}
+
+{% block summary %}
+    <p>
+        Ship To: <br>
+        Expected arrival time: <br>
+
+
+        <br>
+        Items: $ <br>
+        Shipping & handling: $ <br>
+        Total before tax: $ <br>
+        Estimated tax: $ <br>
+        Order total: $
+    </p>
+{% endblock %}
+
+</body>
+</html>
