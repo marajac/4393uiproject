@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from django.views import generic
 from .models import Product
 
@@ -15,6 +16,19 @@ def product(request, slug):
     context = {'item': item}
     template = 'products/item.html'
     return render(request, template, context)
+
+
+def search(request):
+    if request.method == 'GET':  # this will be GET now
+        item_name = request.GET['search']  # do some research what it does
+        #return HttpResponse(item_name)
+        try:
+            status = Product.objects.filter(name__icontains=item_name)
+        except Product.DoesNotExist:
+            status = None
+        return render(request, 'products/search.html', {'result': status})
+    else:
+        return render(request, 'products/search.html', {})
 
 
 '''class ListView(generic.ListView):
