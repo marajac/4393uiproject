@@ -1,21 +1,30 @@
 from django.contrib import admin
-from .models import Product, CatalogCategory, Catalog
+from .models import Product, Category
 
 
-class ProductsAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Product
+class ProductAdmin(admin.ModelAdmin):
+    # form = ProductAdminForm
+    # sets values for how the admin site lists your products
+    list_display = ('name', 'price_in_dollars', 'old_price', 'created_at', 'updated_at',)
+    list_display_links = ('name',)
+    list_per_page = 50
+    ordering = ['-created_at']
+    search_fields = ['name', 'description', 'meta_keywords', 'meta_description']
+    exclude = ('created_at', 'updated_at',)
+    # sets up slug to be generated from product name
+    prepopulated_fields = {'slug': ('name',)}
 
 
-class CatalogAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Catalog
+class CategoryAdmin(admin.ModelAdmin):
+    # sets up values for how admin site lists categories
+    list_display = ('name', 'created_at', 'updated_at',)
+    list_display_links = ('name',)
+    list_per_page = 20
+    ordering = ['name']
+    search_fields = ['name', 'description', 'meta_keywords', 'meta_description']
+    exclude = ('created_at', 'updated_at',)
+    # sets up slug to be generated from category name
+    prepopulated_fields = {'slug': ('name',)}
 
-
-class CatalogCategoryAdmin(admin.ModelAdmin):
-    class Meta:
-        model = CatalogCategory
-
-admin.site.register(Product, ProductsAdmin)
-admin.site.register(Catalog, CatalogAdmin)
-admin.site.register(CatalogCategory, CatalogCategoryAdmin)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)

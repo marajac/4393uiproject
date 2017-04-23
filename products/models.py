@@ -2,44 +2,71 @@ from django.db import models
 from django.utils import timezone
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50, unique=True,
+                            help_text='Unique value for product page URL, created from name.')
+    description = models.TextField()
+    is_active = models.BooleanField(default=True)
+    meta_keywords = models.CharField("Meta Keywords", max_length=255,
+                                     help_text='Comma-delimited set of SEO keywords for meta tag', blank=True)
+    meta_description = models.CharField("Meta Description", max_length=255,
+                                        help_text='Content for description meta tag', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'categories'
+        ordering = ['-created_at']
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return 'catalog_category', (), {'category_slug': self.slug}
+
+
 class Product(models.Model):
-    category = models.ForeignKey('CatalogCategory', related_name='products', null=True)
-    name = models.CharField(max_length=300, null=True)
-    slug = models.SlugField(max_length=150, unique=True, null=True)
-    description = models.TextField(default='Item description here')
-    photo = models.ImageField(upload_to='product_photo', blank=True)
-    manufacturer = models.CharField(max_length=300, blank=True)
-    price_in_dollars = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    name = models.CharField(max_length=255, unique=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True,
+                            help_text='Unique value for product page URL, created from name.', null=True)
+    brand = models.CharField(max_length=50, default='', blank=True)
+    sku = models.CharField(max_length=50, null=True, blank=True)
+    price_in_dollars = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
+    old_price = models.DecimalField(max_digits=9, decimal_places=2,
+                                    blank=True, default=0.00)
+    photo = models.ImageField(upload_to='product_photo', blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    is_bestseller = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+    quantity = models.IntegerField(null=True, blank=True)
+    description = models.TextField(null=True)
+    meta_keywords = models.CharField(max_length=255,
+                                     help_text='Comma-delimited set of SEO keywords for meta tag', null=True
+                                     , blank=True)
+    meta_description = models.CharField(max_length=255,
+                                        help_text='Content for description meta tag', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    categories = models.ManyToManyField(Category)
+
+    class Meta:
+        db_table = 'products'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.name
 
     def get_absolute_url(self):
         return "/products/%s/" % self.slug
+        # return '/products/', {'product_slug': self.slug}
 
-    def __str__(self):
-        return self.name
-
-
-class Catalog(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=150)
-    publisher = models.CharField(max_length=300)
-    description = models.TextField()
-    pub_date = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return self.name
-
-
-class CatalogCategory(models.Model):
-    catalog = models.ForeignKey('Catalog', related_name='categories')
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children')
-    name = models.CharField(max_length=300)
-    slug = models.SlugField(max_length=150)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        if self.parent:
-            return u'%s: %s - %s' % (self.catalog.name, self.parent.name, self.name)
-        return u'%s: %s' % (self.catalog.name, self.name)
+    def sale_price(self):
+        if self.old_price > self.price:
+            return self.price
+        else:
+            return None
 
 
 '''class ProductDetail(models.Model):

@@ -23,77 +23,21 @@
     <br>
     <h2>Featured items</h2>
     <br><br>
-    <div class="col-sm-4">
-              <h3><a href='{{ list.0.get_absolute_url }}'>
-            {% if list.0.photo %}
-                <img src="{{ MEDIA_URL }}{{ list.0.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-            {% else %}
-                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-            {% endif %}
-        </a>
-            <a href='{{ list.0.get_absolute_url }}'> <h3>{{ list.0.name }}</h3></a>
-        </h3>
-        <h4>${{ list.0.price_in_dollars }}</h4>
-    </div>
-    <div class="col-sm-4">
-              <h3><a href='{{ list.1.get_absolute_url }}'>
-            {% if list.1.photo %}
-                <img src="{{ MEDIA_URL }}{{ list.1.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-            {% else %}
-                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-            {% endif %}
-        </a>
-            <a href='{{ list.1.get_absolute_url }}'> <h3>{{ list.1.name }}</h3></a>
-        </h3>
-        <h4>${{ list.1.price_in_dollars }}</h4>
-    </div>
-    <div class="col-sm-4">
-              <h3><a href='{{ list.0.get_absolute_url }}'>
-            {% if list.0.photo %}
-                <img src="{{ MEDIA_URL }}{{ list.0.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-            {% else %}
-                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-            {% endif %}
-        </a>
-            <a href='{{ list.0.get_absolute_url }}'> <h3>{{ list.0.name }}</h3></a>
-        </h3>
-        <h4>${{ list.0.price_in_dollars }}</h4>
-    </div>
-    <div class="col-sm-4">
-              <h3><a href='{{ list.1.get_absolute_url }}'>
-            {% if list.1.photo %}
-                <img src="{{ MEDIA_URL }}{{ list.1.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-            {% else %}
-                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-            {% endif %}
-        </a>
-            <a href='{{ list.1.get_absolute_url }}'> <h3>{{ list.1.name }}</h3></a>
-        </h3>
-        <h4>${{ list.1.price_in_dollars }}</h4>
-    </div>
-    <div class="col-sm-4">
-              <h3><a href='{{ list.0.get_absolute_url }}'>
-            {% if list.0.photo %}
-                <img src="{{ MEDIA_URL }}{{ list.0.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-            {% else %}
-                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-            {% endif %}
-        </a>
-            <a href='{{ list.0.get_absolute_url }}'> <h3>{{ list.0.name }}</h3></a>
-        </h3>
-        <h4>${{ list.0.price_in_dollars }}</h4>
-    </div>
-    <div class="col-sm-4">
-              <h3><a href='{{ list.1.get_absolute_url }}'>
-            {% if list.1.photo %}
-                <img src="{{ MEDIA_URL }}{{ list.1.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-            {% else %}
-                <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-            {% endif %}
-        </a>
-            <a href='{{ list.1.get_absolute_url }}'> <h3>{{ list.1.name }}</h3></a>
-        </h3>
-        <h4>${{ list.1.price_in_dollars }}</h4>
-    </div>
+    {% for item in list %}
+        {% if item.is_featured %}
+            <div class="col-sm-4">
+                      <h3><a href='{{ item.get_absolute_url }}'>
+                    {% if item.photo %}
+                        <img src="{{ MEDIA_URL }}{{ item.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
+                    {% else %}
+                        <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
+                    {% endif %}
+                </a>
+                    <a href='{{ item.get_absolute_url }}'> <h3>{{ item.name }}</h3></a>
+                </h3>
+                <h4>${{ item.price_in_dollars }}</h4>
+            </div>
+        {% endif %}
+    {% endfor %}
 </div>
 {%  endblock %}
