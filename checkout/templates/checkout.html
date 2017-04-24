@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,28 +12,20 @@
 {% block content %}
     <h1>Shipping information</h1>
     <p>
-    <h2>Shipping Address</h2>
-    <form action="">
-        Enter: <input type="text"
-                      name="sAddress"><br>
-        <button type="button"
-                onclick="">
-            Submit
-        </button>
-    </form>
 
-    <h2>Receiver's name</h2>
+    <h3>Receiver's name</h3>
     <form action="">
-        Enter: <input type="text"
+        <input type="text"
                       name="rName"><br>
-        <button type="button"
-                onclick="">
-            Submit
-        </button>
     </form>
 
+    <h3>Shipping Address</h3>
+    <form action="">
+        <input type="text"
+                      name="sAddress"><br>
+    </form>
 
-    <h2>Delivery options</h2>
+    <h3>Delivery options</h3>
     <form action=""><!-- =function -->
         <input type="radio"
                name="rShipping"
@@ -50,27 +43,30 @@
     </p>
 
     <h1>Payment Information</h1>
-    <h2>Payment Method</h2>
+
+    <h3>Card Number</h3>
     <form action="">
-        <input type="radio"
-               name="payment"
-               value="card"> Credit/Debit Card<br>
-        <input type="radio"
-               name="payment"
-               value="bank"> Bank Account<br>
+        <input type="text"
+                      name="cardNum"><br>
+    </form>
+    <h3>Card Expiration Month</h3>
+    <form action="">
+        <input type="number"
+                      name="cardExpMonth"><br>
+    </form>
+    <h3>Card Expiration Year</h3>
+    <form action="">
+        <input type="number"
+                      name="cardExpYear"><br>
     </form>
 
-    <h2>Billing Address</h2>
-    <form action="">
-        <input type="radio"
-               name="bShipping"
-               value="billing"> Add billing Address<br>
-        <input type="radio"
-               name="bShipping"
-               value="same"> Same as shipping address<br>
+    <h3>Billing Address</h3>
+     <form action="">
+        <input type="text"
+                      name="bAddress"><br>
     </form>
-
-    <a href="{% url 'summary' %}" class="btn btn-default"> Complete Order</a>
+    <br>
+    <a type=submit href="{% url 'summary' %}" class="btn btn-default"> Complete Order</a>
 
 {% endblock %}
 </body>

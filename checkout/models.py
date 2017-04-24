@@ -1,5 +1,5 @@
 from django.db import models
-
+from cart.models import Cart
 
 # Create your models here.
 class summary(models.Model):
@@ -13,8 +13,10 @@ class summary(models.Model):
     card_exp_month = models.CharField(max_length=2, default="")  # Card Exp month
     card_exp_year = models.CharField(max_length=2, default="")  # Card Exp year
 
-    def get_r_name(self):
-        return self.r_name
+
+
+    def set_r_name(self, r_name):
+        setattr(self, 'r_name', r_name)
 
     def get_s_address(self):
         return self.s_address
@@ -39,3 +41,13 @@ class summary(models.Model):
 
     def get_card_exp_year(self):
         return self.card_exp_year
+
+    def cal_cart_total(cart):
+        result = 0
+        for cart.item in cart:
+            result = result + models.ForeignKey(cart.total_price)
+        return result
+
+
+def get_r_name(self):
+    return self.r_name
