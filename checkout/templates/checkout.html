@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Checkout</title>
 </head>
+
 <body>
 {% block content %}
     <h1>Shipping information</h1>
@@ -15,7 +16,8 @@
         Enter: <input type="text"
                       name="sAddress"><br>
         <button type="button"
-                onclick="setsaddress(sAddress)">
+                onclick="">
+            Submit
         </button>
     </form>
 
@@ -24,13 +26,14 @@
         Enter: <input type="text"
                       name="rName"><br>
         <button type="button"
-                onclick="setrname(rName)">
+                onclick="">
+            Submit
         </button>
     </form>
 
 
     <h2>Delivery options</h2>
-    <form action="setstype(rShipping)"><!-- =function -->
+    <form action=""><!-- =function -->
         <input type="radio"
                name="rShipping"
                value="standard">
@@ -48,7 +51,7 @@
 
     <h1>Payment Information</h1>
     <h2>Payment Method</h2>
-    <form action="setptype(payment)">
+    <form action="">
         <input type="radio"
                name="payment"
                value="card"> Credit/Debit Card<br>
@@ -58,7 +61,7 @@
     </form>
 
     <h2>Billing Address</h2>
-    <form action="setbaddr(bShipping)">
+    <form action="">
         <input type="radio"
                name="bShipping"
                value="billing"> Add billing Address<br>
@@ -67,10 +70,8 @@
                value="same"> Same as shipping address<br>
     </form>
 
-    <form action="summary.html">
-        <input type ="submit"
-               value="Order Summary">
-    </form>
+    <a href="{% url 'summary' %}" class="btn btn-default"> Complete Order</a>
+
 {% endblock %}
 </body>
 </html>

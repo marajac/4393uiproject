@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^about/$', profiles_views.about, name='about'),
     url(r'^profile/$', profiles_views.user_profile, name='profile'),
     url(r'^checkout/$', checkout_views.checkout, name='checkout'),
+    url(r'^summary/$', checkout_views.summary, name='summary'),
     url(r'^cart/$', cart_views.get_cart, name='cart'),
     url(r'^contact/$', contact_views.contact, name='contact'),
     url(r'^products/', include('products.urls')),
