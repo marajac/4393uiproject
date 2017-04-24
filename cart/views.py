@@ -24,4 +24,7 @@ def remove_from_cart(request, product_id):
 
 
 def get_cart(request):
-    return render_to_response('cart.html', dict(cart=Cart(request)))
+    cart = Cart(request)
+    template = 'cart.html'
+    context = {'cart': cart}
+    return render(request, template, context)

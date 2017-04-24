@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
 
 {% block content %}
-    <table>
+{% comment %}    <table>
         <tr>
             <th>Product  </th>
             <th>Quantity  </th>
@@ -20,6 +22,49 @@
         {% endfor %}
     </table>
 
-    <a href="{% url 'checkout' %}" class="btn btn-default"> Proceed To Checkout</a>
+    <a href="{% url 'checkout' %}" class="btn btn-default"> Proceed To Checkout</a>{% endcomment %}
+
+    <div class="fluid-container">
+	<table id="cart" class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width:50%">Product</th>
+                <th style="width:10%">Price</th>
+                <th style="width:30%" class="text-center">Subtotal</th>
+                <th style="width:10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            <tr>
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-2 hidden-xs"><img style="height: 75px;" src="{{ MEDIA_URL }}{{ item.product.photo }}" alt="..." class="img-responsive"/></div>
+                        <div class="col-sm-10">
+                            <h4 class="nomargin">{{ item.product.name }}</h4>
+                        </div>
+                    </div>
+                </td>
+                <td data-th="Price">${{ item.product.price_in_dollars }}</td>
+                <td data-th="Subtotal" class="text-center">${{ item.product.price_in_dollars }}</td>
+                <td class="actions" data-th="">
+                    <a class="btn btn-danger btn-sm" href ='{% url "remove_from_cart" item.product.id%}'>Remove from cart<i class="fa fa-trash-o"></i></a>
+                </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="visible-xs">
+                <td class="text-center"><strong>Total 1.99</strong></td>
+            </tr>
+            <tr>
+                <td><a href="/products/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                <td colspan="1" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong>Total ${{ cart.summary }}</strong></td>
+                <td><a href="{% url 'checkout' %}" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 
 {% endblock %}
