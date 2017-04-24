@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from cart.cart import Cart
 
 #from .forms import CheckoutForm
 
@@ -24,6 +25,7 @@ def checkout(request):
 
 
 def summary(request):
-    context = {}
+    cart = Cart(request)
+    context = {'cart': cart}
     template = 'summary.html'
     return render(request, template, context)

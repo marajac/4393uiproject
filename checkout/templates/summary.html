@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,41 @@
     <div class="header">
         <h1>Order Summary</h1>
         <h1>Your order has been shipped!</h1>
+        <br><br><br>
+            <div class="fluid-container">
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th style="width:50%" class="text-center">Product</th>
+                        <th style="width:10%" class="text-center">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img style="height: 75px;" src="{{ MEDIA_URL }}{{ item.product.photo }}" alt="..." class="img-responsive"/></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">{{ item.product.name }}</h4>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">${{ item.product.price_in_dollars }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="visible-xs">
+                        <td class="text-center"><strong>Total 1.99</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="hidden-xs"></td>
+                        <td class="hidden-xs text-center"><strong>Total ${{ cart.summary }}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 {% endblock %}
 
