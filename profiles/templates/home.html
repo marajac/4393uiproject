@@ -19,25 +19,29 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <br>
-    <h2>Featured items</h2>
-    <br><br>
-    {% for item in list %}
-        {% if item.is_featured %}
-            <div class="col-sm-4">
-                      <h3><a href='{{ item.get_absolute_url }}'>
-                    {% if item.photo %}
-                        <img src="{{ MEDIA_URL }}{{ item.photo }}" class="img-responsive" style="width:300px;height:300px;"/>
-                    {% else %}
-                        <img class='img-responsive' src="{% static 'img/unavailable.png' %}" style="width:300px;height:300px;" />
-                    {% endif %}
-                </a>
-                    <a href='{{ item.get_absolute_url }}'> <h3>{{ item.name }}</h3></a>
-                </h3>
-                <h4>${{ item.price_in_dollars }}</h4>
+<h1>Featured items</h1>
+<br><br><br>
+<div class="container">
+    <div id="products" class="row list-group">
+        {% for item in list %}
+            {% if item.is_featured %}
+            <div class="item  col-xs-4 col-lg-4">
+                <div class="thumbnail" style="height: 420px;">
+                    <a href="{{ item.get_absolute_url }}"><img style='height: 300px;' class="group list-group-image" src="{{ MEDIA_URL }}{{ item.photo }}" alt="" /></a>
+                    <div class="caption">
+                        <a href="{{ item.get_absolute_url }}"><h4 class="group inner list-group-item-heading">
+                            {{ item.name }}</h4></a>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                    ${{ item.price_in_dollars }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        {% endif %}
-    {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>
 {%  endblock %}
