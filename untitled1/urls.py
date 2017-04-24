@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^contact/$', contact_views.contact, name='contact'),
     url(r'^products/', include('products.urls')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^add_to_cart/(?P<product_id>.*)/(?P<quantity>.*)', cart_views.add_to_cart, name="add_to_cart"),
+    url(r'^remove_from_cart/(?P<product_id>.*)', cart_views.remove_from_cart, name="remove_from_cart"),
 ]
 
 if settings.DEBUG:

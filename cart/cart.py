@@ -15,6 +15,7 @@ class ItemDoesNotExist(Exception):
 class Cart:
     def __init__(self, request):
         cart_id = request.session.get(CART_ID)
+
         if cart_id:
             try:
                 cart = models.Cart.objects.get(id=cart_id, checked_out=False)
