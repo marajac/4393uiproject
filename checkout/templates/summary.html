@@ -20,21 +20,13 @@
 {% block jumbotron %}
     <div class="header">
         <h1>Order Summary</h1>
+        <h1>Your order has been shipped!</h1>
     </div>
 {% endblock %}
 
 {% block content %}
     <p><br>
-        Ship To: getattr(summary, 'r_name')<br>
-        Expected arrival time: <br>
 
-
-        <br>
-        Items: $ cal_cart_total(cart)<br>
-        Shipping & handling: $ <br>
-        Total before tax: $ <br>
-        Estimated tax: $ <br>
-        Order total: $
     </p>
 {% endblock %}
 </body>
