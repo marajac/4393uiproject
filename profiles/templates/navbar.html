@@ -2,7 +2,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <ul class="nav navbar-nav">
+            <div class="navbar-brand"><p> ShopTime </p></div>
+{% comment %}            <ul class="nav navbar-nav">
                 {% url 'home' as home %}
                 {% url 'about' as about %}
                 {% url 'contact' as contact %}
@@ -23,26 +24,33 @@
                         {% endif %}
                     </ul>
                 </li>
-            </ul>
+            </ul>{% endcomment %}
         </div>
     <!--<div id="navbar" class="navbar-collapse collapse">-->
       <ul class="nav navbar-nav">
-        {% url 'products/search' as search %}
+{% comment %}        {% url 'products/search' as search %}
          <form class="navbar-form navbar-left" method="get" action="/products/search/">
             <div class="form-group">
               <input name="search" id="search_box" type="text" class="form-control" placeholder="Search for items...">
             </div>
             <button type="submit" class="btn btn-default">Search</button>
-         </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/cart/">Shopping Cart</a></li>
-      </ul>
-      <!--{% url 'home' as home %}
+         </form>{% endcomment %}
+      {% url 'home' as home %}
       {% url 'about' as about %}
       {% url 'contact' as contact %}
+      {% url 'cart' as cart %}
         <li {% if request.path == home %} class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
+        <li {% if request.path == "/products/" %} class="active" {% endif %}><a href="/products/">Catalog</a></li>
         <li {% if request.path == about %} class="active" {% endif %}><a href="{% url 'about' %}">About</a></li>
         <li {% if request.path == contact %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact us</a></li>
+        {% url 'products/search' as search %}
+        <form class="navbar-form navbar-left" method="get" action="/products/search/">
+            <div class="form-group">
+                <input name="search" id="search_box" type="text" class="form-control" placeholder="Search for items...">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+        <li {% if request.path == cart %} class="active" {% endif %}><a href="{% url 'cart' %}">Cart</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -52,10 +60,6 @@
             {% else %}
                 <li><a href="{% url 'account_logout' %}">Logout</a></li>
             {% endif %}
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>-->
       </ul>
