@@ -4,7 +4,7 @@ from cart.cart import Cart
 
 #from .forms import CheckoutForm
 
-@login_required
+#@login_required
 def checkout(request):
 #    form = CheckoutForm(request.POST or None)
 #    confirm_message = None
