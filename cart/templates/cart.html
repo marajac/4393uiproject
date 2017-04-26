@@ -25,6 +25,10 @@
     <a href="{% url 'checkout' %}" class="btn btn-default"> Proceed To Checkout</a>{% endcomment %}
 
     <div class="fluid-container">
+    {% if cart.is_empty %}
+        <br><br><br>
+        <p style="font-size: 32px;">Your cart is empty! Add some products by browsing our <a href="/products/">catalog</a>.</p>
+    {% else %}
 	<table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>
@@ -65,6 +69,7 @@
             </tr>
         </tfoot>
     </table>
+    {% endif %}
 </div>
 
 {% endblock %}

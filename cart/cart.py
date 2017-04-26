@@ -96,3 +96,8 @@ class Cart:
         for item in self.cart.item_set.all():
             item.delete()
 
+    def is_empty(self):
+        if not self.cart.item_set.exists():
+            return True
+        else:
+            return False
